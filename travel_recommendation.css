@@ -113,7 +113,7 @@ nav a:hover {
     padding: 12px;
     border: 1px solid #a0a0a0;
     border-radius: 25px;
-    font-size: 14px;
+    font-size: 14px; /* Retained previous font size as it's for input, not button */
     width: 250px;
     background-color: rgba(255, 255, 255, 0.95);
     color: #333;
@@ -127,7 +127,7 @@ nav a:hover {
     border: none;
     border-radius: 25px;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 14px; /* Changed from 16px to 14px as requested */
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -150,32 +150,32 @@ nav a:hover {
 
 /* --- New PRESENTATION CONTAINER --- */
 .presentation-container {
-    padding: 40px 30px;
-    max-width: 1000px;
-    margin: 30px auto;
-    background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    padding: 40px 30px; /* Ample padding */
+    max-width: 1000px; /* Max width to contain text */
+    margin: 30px auto; /* Center it with top/bottom margin */
+    background-color: rgba(255, 255, 255, 0.5); /* 0.5 opacity as requested */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* Consistent shadow */
     position: relative;
-    z-index: 1;
-    text-align: center;
-    color: #222;
+    z-index: 1; /* Ensure it's above the background overlay */
+    text-align: center; /* Center text */
+    color: #222; /* Darker text for readability on lighter background */
 }
 
 .presentation-container h2 {
     font-family: 'Playfair Display', serif;
     font-size: 2.8em;
-    color: #007bff;
+    color: #007bff; /* Consistent blue heading */
     margin-bottom: 20px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .presentation-container p {
-    font-size: 1.15em;
-    line-height: 1.8;
+    font-size: 1.15em; /* Slightly larger text */
+    line-height: 1.8; /* Good line spacing for readability */
     margin-bottom: 15px;
-    color: #333;
-    max-width: 800px;
+    color: #333; /* Good contrast for body text */
+    max-width: 800px; /* Limit paragraph width for better readability */
     margin-left: auto;
     margin-right: auto;
 }
@@ -184,7 +184,7 @@ nav a:hover {
 .special-events-section {
     padding: 40px 0;
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.5); /* Changed to 0.5 opacity */
     margin: 30px auto;
     border-radius: 15px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
@@ -307,124 +307,18 @@ nav a:hover {
     background-color: #0056b3;
     transform: translateY(-2px);
 }
+/* style.css */
 
-/* --- Social Media Widgets --- */
-.social-media-widgets {
-    position: fixed;
-    top: 50%;
-    left: 20px;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    z-index: 1000;
-}
+/* ... (previous CSS code remains unchanged) ... */
 
-.social-media-widgets a {
-    color: #fff;
-    background-color: #333;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.social-media-widgets a:hover {
-    background-color: #007bff;
-    transform: scale(1.1);
-}
-
-/* --- Search Results Section (Dynamically Added Content) --- */
-.search-results-container {
-    padding: 40px 30px;
-    max-width: 1000px;
-    margin: 30px auto;
-    background-color: rgba(255, 255, 255, 0.6); /* Slightly more opaque for results */
-    border-radius: 15px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-    position: relative;
-    z-index: 1;
-    display: none; /* HIDE BY DEFAULT - NEW */
-    flex-direction: column;
-    align-items: center;
-    min-height: 100px;
-    text-align: center;
-}
-
-.search-results-container .no-results {
-    font-size: 1.2em;
-    color: #555;
-    margin: 20px 0;
-    text-align: center;
-}
-
-.recommendations-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
-    gap: 30px;
-    width: 100%; /* Take full width of parent container */
-    justify-content: center;
-    padding: 20px 0;
-}
-
-.recommendation-card {
-    background-color: #fff; /* Solid white background for readability */
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    text-align: left; /* Align text within card to left */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 100%; /* Ensure cards are same height */
-}
-
-.recommendation-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-}
-
-.recommendation-card img {
-    width: 100%;
-    height: 200px; /* Fixed height for images */
-    object-fit: cover;
-    border-bottom: 1px solid #eee;
-}
-
-.recommendation-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6em;
-    color: #007bff;
-    margin: 15px 15px 5px 15px;
-}
-
-.recommendation-card p {
-    font-size: 0.95em;
-    color: #444;
-    padding: 0 15px 15px 15px;
-    line-height: 1.5;
-    flex-grow: 1; /* Allow description to take available space */
-}
-
-.recommendation-card .local-time-info {
-    font-size: 0.9em;
-    color: #777;
-    font-style: italic;
-    margin-top: auto; /* Push to the bottom */
-    padding: 0 15px 15px 15px;
-}
-
-/* --- Offer Page Specific Styles --- */
+/* --- New Offer Page Specific Styles --- */
 .offer-details-container {
-    text-align: left;
+    /* Inherits general page-container styles for transparency, padding, etc. */
+    text-align: left; /* Align text within the container to the left */
 }
 
 .offer-details-container h2 {
-    font-size: 2.5em;
+    font-size: 2.5em; /* Slightly smaller for offer page heading */
     margin-bottom: 15px;
     text-align: center;
 }
@@ -438,7 +332,7 @@ nav a:hover {
 }
 
 .offer-content {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.7); /* Slightly more opaque background for content block */
     padding: 25px;
     border-radius: 10px;
     margin-bottom: 30px;
@@ -520,7 +414,7 @@ nav a:hover {
 .offer-form input[type="tel"],
 .offer-form select,
 .offer-form textarea {
-    width: calc(100% - 22px);
+    width: calc(100% - 22px); /* Account for padding */
     padding: 11px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -536,7 +430,7 @@ nav a:hover {
 }
 
 .offer-form .submit-button {
-    width: 100%;
+    width: 100%; /* Make button full width of form */
     padding: 12px 20px;
     font-size: 1.1em;
     margin-top: 10px;
@@ -599,11 +493,12 @@ nav a:hover {
 }
 
 /* --- New styles for About Us and Contact Us pages --- */
+
 .page-container {
     padding: 40px 20px;
     max-width: 900px;
     margin: 30px auto;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.5); /* Changed to 0.5 opacity */
     border-radius: 15px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
     position: relative;
@@ -640,7 +535,7 @@ nav a:hover {
 }
 
 .team-member-card {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.7); /* Slightly more opaque for cards, adjust if needed */
     border-radius: 12px;
     padding: 25px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
@@ -694,7 +589,7 @@ nav a:hover {
     max-width: 500px;
     margin: 0 auto 30px auto;
     padding: 30px;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.7); /* Slightly more opaque for the form itself */
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     text-align: left;
@@ -760,4 +655,140 @@ nav a:hover {
 
 .contact-info a:hover {
     text-decoration: underline;
+}
+/* Existing CSS styles */
+
+/* Social Media Widgets */
+.social-media-widgets {
+    position: fixed; /* Fixes the position relative to the viewport */
+    top: 50%; /* Aligns the top of the widget block to the middle of the screen */
+    left: 20px; /* Distance from the left edge of the screen */
+    transform: translateY(-50%); /* Vertically centers the block */
+    display: flex;
+    flex-direction: column; /* Stacks icons vertically */
+    gap: 15px; /* Space between icons */
+    z-index: 1000; /* Ensures it stays on top of other content */
+}
+
+.social-media-widgets a {
+    color: #fff; /* White icon color */
+    background-color: #333; /* Dark background for icons */
+    width: 40px; /* Width of the icon background */
+    height: 40px; /* Height of the icon background */
+    border-radius: 50%; /* Makes the background circular */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px; /* Size of the icon */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+.social-media-widgets a:hover {
+    background-color: #007bff; /* Change background color on hover */
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+/* New CSS for Offer Pages extracted from HTML files */
+.offer-container {
+    padding: 40px;
+    max-width: 900px;
+    margin: 40px auto;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.offer-container h1 {
+    color: #333;
+    margin-bottom: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5em;
+}
+.offer-image {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+.offer-description {
+    font-size: 1.1em;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 30px;
+    text-align: left;
+}
+.offer-price {
+    font-size: 2.8em;
+    color: #e63946;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+.offer-price span {
+    font-size: 0.6em;
+    color: #777;
+    font-weight: 400;
+}
+.offer-highlights {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+    text-align: left;
+}
+.offer-highlights li {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%2328a745" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-8.56"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>') no-repeat left center;
+    background-size: 20px;
+    padding-left: 30px;
+    margin-bottom: 10px;
+    font-size: 1.05em;
+    color: #444;
+}
+.contact-form-section {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    margin-top: 40px;
+}
+.contact-form-section h2 {
+    color: #333;
+    margin-bottom: 25px;
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+}
+.contact-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #444;
+    text-align: left;
+}
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form textarea {
+    width: calc(100% - 20px);
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+.contact-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+.contact-form button {
+    background-color: #28a745;
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+.contact-form button:hover {
+    background-color: #218838;
 }

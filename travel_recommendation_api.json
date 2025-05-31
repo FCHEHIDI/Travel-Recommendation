@@ -1,0 +1,352 @@
+{
+    "countries": [
+        {
+            "id": 1,
+            "name": "Australia",
+            "cities": [
+                {
+                    "name": "Sydney, Australia",
+                    "imageUrl": "enter_your_image_for_sydney.jpg",
+                    "description": "A vibrant city known for its iconic landmarks like the Sydney Opera House and Sydney Harbour Bridge."
+                },
+                {
+                    "name": "Melbourne, Australia",
+                    "imageUrl": "enter_your_image_for_melbourne.jpg",
+                    "description": "A cultural hub famous for its art, food, and diverse neighborhoods."
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Japan",
+            "cities": [
+                {
+                    "name": "Tokyo, Japan",
+                    "imageUrl": "enter_your_image_for_tokyo.jpg",
+                    "description": "A bustling metropolis blending tradition and modernity, famous for its cherry blossoms and rich culture."
+                },
+                {
+                    "name": "Kyoto, Japan",
+                    "imageUrl": "enter_your_image_for_kyoto.jpg",
+                    "description": "Known for its historic temples, gardens, and traditional tea houses."
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Brazil",
+            "cities": [
+                {
+                    "name": "Rio de Janeiro, Brazil",
+                    "imageUrl": "enter_your_image_for_rio.jpg",
+                    "description": "A lively city known for its stunning beaches, vibrant carnival celebrations, and iconic landmarks."
+                },
+                {
+                    "name": "São Paulo, Brazil",
+                    "imageUrl": "enter_your_image_for_sao-paulo.jpg",
+                    "description": "The financial hub with diverse culture, arts, and a vibrant nightlife."
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "name": "Scotland",
+            "cities": [
+                {
+                    "name": "Edinburgh, Scotland",
+                    "imageUrl": "enter_your_image_for_edinburgh.jpg",
+                    "description": "Scotland's capital, a historic city with a dramatic castle, medieval Old Town, and vibrant arts scene."
+                },
+                {
+                    "name": "Isle of Skye, Scotland",
+                    "imageUrl": "enter_your_image_for_isle-of-skye.jpg",
+                    "description": "A breathtaking island known for its rugged landscapes, fairy pools, and ancient castles."
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "name": "Thailand",
+            "cities": [
+                {
+                    "name": "Bangkok, Thailand",
+                    "imageUrl": "enter_your_image_for_bangkok.jpg",
+                    "description": "A bustling capital city famous for its ornate shrines, vibrant street life, and delicious food."
+                },
+                {
+                    "name": "Chiang Mai, Thailand",
+                    "imageUrl": "enter_your_image_for_chiang-mai.jpg",
+                    "description": "A cultural northern city nestled in mountains, known for its ancient temples and night bazaars."
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "name": "China",
+            "cities": [
+                {
+                    "name": "Beijing, China",
+                    "imageUrl": "enter_your_image_for_beijing.jpg",
+                    "description": "The capital city, home to historical wonders like the Great Wall and Forbidden City."
+                },
+                {
+                    "name": "Shanghai, China",
+                    "imageUrl": "enter_your_image_for_shanghai.jpg",
+                    "description": "A vibrant global financial hub with stunning skylines, futuristic architecture, and rich history."
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "name": "Sri Lanka",
+            "cities": [
+                {
+                    "name": "Colombo, Sri Lanka",
+                    "imageUrl": "enter_your_image_for_colombo.jpg",
+                    "description": "The bustling capital and a major port city, offering a mix of modern life and colonial buildings."
+                },
+                {
+                    "name": "Kandy, Sri Lanka",
+                    "imageUrl": "enter_your_image_for_kandy.jpg",
+                    "description": "A sacred city nestled in hills, famous for the Temple of the Tooth Relic and lush botanical gardens."
+                }
+            ]
+        },
+        {
+            "id": 8,
+            "name": "Maldives",
+            "cities": [
+                {
+                    "name": "Malé, Maldives",
+                    "imageUrl": "enter_your_image_for_male.jpg",
+                    "description": "The capital of the Maldives, a densely populated island city with colorful buildings and a vibrant fish market."
+                },
+                {
+                    "name": "Addu Atoll, Maldives",
+                    "imageUrl": "enter_your_image_for_addu-atoll.jpg",
+                    "description": "A serene atoll known for its natural beauty, dive sites, and local island life."
+                }
+            ]
+        },
+        {
+            "id": 9,
+            "name": "Morocco (Sahara Gateway)",
+            "cities": [
+                {
+                    "name": "Marrakech, Morocco",
+                    "imageUrl": "enter_your_image_for_marrakech.jpg",
+                    "description": "A vibrant imperial city, often a starting point for Sahara desert tours, known for its souks and Jemaa el-Fna square."
+                },
+                {
+                    "name": "Fes, Morocco",
+                    "imageUrl": "enter_your_image_for_fes.jpg",
+                    "description": "Home to the world's oldest university and a labyrinthine medina, offering a glimpse into ancient Moroccan life."
+                }
+            ]
+        },
+        {
+            "id": 10,
+            "name": "United Arab Emirates (Middle East)",
+            "cities": [
+                {
+                    "name": "Dubai, UAE",
+                    "imageUrl": "enter_your_image_for_dubai.jpg",
+                    "description": "A dazzling city known for its luxury shopping, ultra-modern architecture, and vibrant nightlife."
+                },
+                {
+                    "name": "Abu Dhabi, UAE",
+                    "imageUrl": "enter_your_image_for_abu-dhabi.jpg",
+                    "description": "The capital, blending traditional heritage with modern aspirations, home to the Sheikh Zayed Grand Mosque."
+                }
+            ]
+        },
+        {
+            "id": 11,
+            "name": "South Africa (Africa)",
+            "cities": [
+                {
+                    "name": "Cape Town, South Africa",
+                    "imageUrl": "enter_your_image_for_cape-town.jpg",
+                    "description": "A port city on South Africa’s southwest coast, known for its stunning Table Mountain, vibrant harbor, and beautiful beaches."
+                },
+                {
+                    "name": "Johannesburg, South Africa",
+                    "imageUrl": "enter_your_image_for_johannesburg.jpg",
+                    "description": "The largest city in South Africa, a vibrant metropolis with a rich history and cultural diversity."
+                }
+            ]
+        },
+        {
+            "id": 12,
+            "name": "Russia",
+            "cities": [
+                {
+                    "name": "Moscow, Russia",
+                    "imageUrl": "enter_your_image_for_moscow.jpg",
+                    "description": "Russia's sprawling capital, known for iconic landmarks like the Red Square, Kremlin, and colorful St. Basil's Cathedral."
+                },
+                {
+                    "name": "St. Petersburg, Russia",
+                    "imageUrl": "enter_your_image_for_st-petersburg.jpg",
+                    "description": "The cultural capital, famous for its magnificent palaces, classical architecture, and the Hermitage Museum."
+                }
+            ]
+        },
+        {
+            "id": 13,
+            "name": "Finland (Lapland)",
+            "cities": [
+                {
+                    "name": "Rovaniemi, Finland",
+                    "imageUrl": "enter_your_image_for_rovaniemi.jpg",
+                    "description": "The official hometown of Santa Claus and a gateway to Arctic adventures in Finnish Lapland."
+                },
+                {
+                    "name": "Levi, Finland",
+                    "imageUrl": "enter_your_image_for_levi.jpg",
+                    "description": "A popular ski resort town in Finnish Lapland, offering stunning Northern Lights views and winter activities."
+                }
+            ]
+        },
+        {
+            "id": 14,
+            "name": "Canada",
+            "cities": [
+                {
+                    "name": "Vancouver, Canada",
+                    "imageUrl": "enter_your_image_for_vancouver.jpg",
+                    "description": "A bustling west coast seaport in British Columbia, known for its natural beauty, vibrant arts, and diverse culture."
+                },
+                {
+                    "name": "Toronto, Canada",
+                    "imageUrl": "enter_your_image_for_toronto.jpg",
+                    "description": "Canada's largest city, a dynamic metropolis with a diverse population, iconic CN Tower, and thriving arts scene."
+                }
+            ]
+        },
+        {
+            "id": 15,
+            "name": "Peru",
+            "cities": [
+                {
+                    "name": "Lima, Peru",
+                    "imageUrl": "enter_your_image_for_lima.jpg",
+                    "description": "The capital, a sprawling city with colonial architecture, ancient ruins, and a renowned culinary scene."
+                },
+                {
+                    "name": "Cusco, Peru",
+                    "imageUrl": "enter_your_image_for_cusco.jpg",
+                    "description": "A city in the Peruvian Andes, once the capital of the Inca Empire, and a gateway to Machu Picchu."
+                }
+            ]
+        },
+        {
+            "id": 16,
+            "name": "Chile",
+            "cities": [
+                {
+                    "name": "Santiago, Chile",
+                    "imageUrl": "enter_your_image_for_santiago.jpg",
+                    "description": "Chile's capital and largest city, set against the backdrop of the Andes, known for its neoclassical architecture and vibrant cultural life."
+                },
+                {
+                    "name": "Valparaíso, Chile",
+                    "imageUrl": "enter_your_image_for_valparaiso.jpg",
+                    "description": "A colorful port city known for its steep funiculars, bohemian culture, and clifftop homes."
+                }
+            ]
+        },
+        {
+            "id": 17,
+            "name": "Greece",
+            "cities": [
+                {
+                    "name": "Athens, Greece",
+                    "imageUrl": "enter_your_image_for_athens.jpg",
+                    "description": "The historical capital of Europe, home to ancient landmarks like the Acropolis and Parthenon."
+                },
+                {
+                    "name": "Santorini, Greece",
+                    "imageUrl": "enter_your_image_for_santorini.jpg",
+                    "description": "A picturesque island known for its stunning sunsets, white-washed villages, and volcanic beaches."
+                }
+            ]
+        },
+        {
+            "id": 18,
+            "name": "Czech Republic (Eastern Europe)",
+            "cities": [
+                {
+                    "name": "Prague, Czech Republic",
+                    "imageUrl": "enter_your_image_for_prague.jpg",
+                    "description": "A charming city with a rich history, iconic Charles Bridge, and stunning architecture."
+                },
+                {
+                    "name": "Český Krumlov, Czech Republic",
+                    "imageUrl": "enter_your_image_for_cesky-krumlov.jpg",
+                    "description": "A picturesque medieval town in South Bohemia, famous for its castle and charming Old Town."
+                }
+            ]
+        },
+        {
+            "id": 19,
+            "name": "Hungary (Eastern Europe)",
+            "cities": [
+                {
+                    "name": "Budapest, Hungary",
+                    "imageUrl": "enter_your_image_for_budapest.jpg",
+                    "description": "The capital city, divided by the Danube River, known for its thermal baths, historic buildings, and vibrant ruin bars."
+                },
+                {
+                    "name": "Eger, Hungary",
+                    "imageUrl": "enter_your_image_for_eger.jpg",
+                    "description": "A historic city in northern Hungary, famous for its castle, thermal baths, and red wines."
+                }
+            ]
+        },
+        {
+            "id": 20,
+            "name": "Jordan (Middle East)",
+            "cities": [
+                {
+                    "name": "Amman, Jordan",
+                    "imageUrl": "enter_your_image_for_amman.jpg",
+                    "description": "The capital of Jordan, a city of contrasts, blending ancient ruins with modern architecture."
+                },
+                {
+                    "name": "Petra, Jordan",
+                    "imageUrl": "enter_your_image_for_petra.jpg",
+                    "description": "An archaeological city carved into red sandstone cliffs, a UNESCO World Heritage site and one of the New Seven Wonders of the World."
+                }
+            ]
+        }
+    ],
+    "temples": [
+        {
+            "id": 1,
+            "name": "Angkor Wat, Cambodia",
+            "imageUrl": "enter_your_image_for_angkor-wat.jpg",
+            "description": "A UNESCO World Heritage site and the largest religious monument in the world."
+        },
+        {
+            "id": 2,
+            "name": "Taj Mahal, India",
+            "imageUrl": "enter_your_image_for_taj-mahal.jpg",
+            "description": "An iconic symbol of love and a masterpiece of Mughal architecture."
+        }
+    ],
+    "beaches": [
+        {
+            "id": 1,
+            "name": "Bora Bora, French Polynesia",
+            "imageUrl": "enter_your_image_for_bora-bora.jpg",
+            "description": "An island known for its stunning turquoise waters and luxurious overwater bungalows."
+        },
+        {
+            "id": 2,
+            "name": "Copacabana Beach, Brazil",
+            "imageUrl": "enter_your_image_for_copacabana.jpg",
+            "description": "A famous beach in Rio de Janeiro, Brazil, with a vibrant atmosphere and scenic views."
+        }
+    ]
+}

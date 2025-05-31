@@ -1,0 +1,279 @@
+/* style.css */
+
+/* --- Base & Background --- */
+body {
+    font-family: 'Montserrat', sans-serif; /* Modern, clean font */
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-image: url('voyageur_background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body::before {
+    content: '';
+    position: fixed; /* Fixed position for overlay */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.45); /* Slightly darker overlay */
+    z-index: -1;
+}
+
+/* --- Header --- */
+header {
+    background-color: rgba(0, 0, 0, 0.75); /* More opaque */
+    color: #fff;
+    padding: 1.5em 0;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+    position: relative; /* Ensure z-index works */
+    z-index: 10;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.8em; /* Larger heading */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Stronger text shadow */
+    font-family: 'Playfair Display', serif; /* Elegant font */
+    letter-spacing: 1px;
+}
+
+/* --- Navigation Bar --- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(40, 40, 40, 0.9); /* Darker, more opaque */
+    padding: 0.8em 30px; /* More padding */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* More space */
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* More space for logo elements */
+    font-family: 'Pacifico', cursive; /* Script font */
+    font-size: 2.6em; /* Even larger logo text */
+    font-weight: normal;
+    color: #87ceeb; /* Sky blue, more aligned with the palm tree */
+    text-decoration: none;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6); /* Stronger shadow */
+    transition: color 0.3s ease;
+}
+
+.logo:hover {
+    color: #afeeee; /* Lighter blue on hover */
+}
+
+.logo-image {
+    height: 70px; /* Made bigger as requested */
+    width: auto;
+    vertical-align: middle;
+    filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.4)); /* Subtle shadow for the image */
+}
+
+nav a {
+    color: #e0e0e0;
+    padding: 0.8em 1.5em; /* Adjusted padding */
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 1px; /* More spacing */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+nav a:hover {
+    background-color: rgba(85, 85, 85, 0.7);
+    color: #fff;
+    border-radius: 6px; /* Slightly more rounded */
+    transform: translateY(-2px); /* Lift effect */
+}
+
+/* --- Search Bar --- */
+.search-container {
+    display: flex;
+    gap: 10px; /* More space */
+    align-items: center;
+}
+
+.search-container input[type="text"] {
+    padding: 12px; /* More padding */
+    border: 1px solid #a0a0a0;
+    border-radius: 25px; /* More rounded */
+    font-size: 14px; /* Larger font */
+    width: 250px; /* Wider input */
+    background-color: rgba(255, 255, 255, 0.95); /* Less transparent */
+    color: #333;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.search-container button {
+    padding: 12px 22px; /* Larger buttons */
+    background-color: #007bff; /* Primary blue */
+    color: #fff;
+    border: none;
+    border-radius: 25px; /* More rounded */
+    cursor: pointer;
+    font-size: 14px; /* Larger font */
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.search-container button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.search-container button.reset {
+    background-color: #ffc107; /* Warm yellow */
+    color: #333;
+}
+
+.search-container button.reset:hover {
+    background-color: #e0a800;
+}
+
+/* --- Special Events & Discoveries Section --- */
+.special-events-section {
+    padding: 40px 0; /* More vertical padding */
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.5); /* Slightly transparent white background */
+    margin: 30px auto;
+    border-radius: 15px; /* More rounded corners */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* Deeper shadow */
+    max-width: 1200px; /* Wider section */
+    width: 90%; /* Responsive width */
+    position: relative;
+    z-index: 1;
+    overflow: hidden; /* Hide anything outside */
+}
+
+.special-events-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3em; /* Larger heading */
+    color: #007bff; /* Primary blue */
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.special-events-section .section-tagline {
+    font-size: 1.3em;
+    color: #555;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+.carousel-container {
+    padding: 20px 0;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    scroll-snap-type: x mandatory; /* Snap to cards */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none;  /* Hide scrollbar for IE/Edge */
+}
+
+.carousel-container::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome/Safari */
+}
+
+.carousel-inner {
+    display: flex;
+    gap: 30px; /* Space between cards */
+    padding: 10px 40px; /* Padding on the sides to show partial next/prev cards */
+    justify-content: flex-start; /* Align items to the start */
+    align-items: stretch; /* Stretch cards to equal height if content varies */
+}
+
+.carousel-card {
+    flex: 0 0 320px; /* Fixed width for each card, adjust as needed */
+    height: 450px; /* Fixed height for consistency */
+    scroll-snap-align: start; /* Snap point at the start of each card */
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden; /* Hide overflowing content (e.g., rounded image corners) */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Align content to bottom */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carousel-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the card area */
+    position: absolute; /* Position image to fill card */
+    top: 0;
+    left: 0;
+    z-index: 0; /* Behind overlay */
+}
+
+.card-overlay {
+    position: relative; /* Position relative to card, not image */
+    z-index: 1; /* Above image */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%); /* Gradient overlay */
+    color: #fff;
+    padding: 20px;
+    padding-top: 80px; /* More padding at top to make gradient softer */
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Push content to the bottom of the overlay */
+    height: 100%; /* Take full height of card for gradient */
+}
+
+.card-overlay h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8em;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    color: #fff; /* Ensure text is white */
+}
+
+.card-overlay p {
+    font-size: 1em;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.discover-more {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    align-self: flex-start; /* Align button to the left within overlay */
+}
+
+.discover-more:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}

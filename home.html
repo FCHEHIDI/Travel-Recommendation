@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voyageur - Home</title>
+    <link rel="stylesheet" href="travel_recommendation.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Pacifico&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Discover Your Next Journey</h1>
+    </header>
+
+    <nav>
+        <div class="nav-left">
+            <a href="home.html" class="logo">
+                <img src="http://googleusercontent.com/image_generation_content/5" alt="Voyageur Logo" class="logo-image">
+                Voyageur
+            </a>
+            <a href="home.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+        <div class="search-container">
+            <input type="text" id="searchBar" placeholder="Search destinations...">
+            <button id="searchButton">Search</button>
+            <button id="resetButton" class="reset">Reset</button>
+        </div>
+    </nav>
+
+    <section class="special-events-section">
+        <h2>Special Events & Discoveries</h2>
+        <p class="section-tagline">Explore unique activities and top destinations around the globe!</p>
+        <div class="carousel-container">
+            <div class="carousel-inner">
+                <div class="carousel-card">
+                    <img src="enter_your_image_for_japan_cherry_blossom.jpg" alt="Japan Cherry Blossom">
+                    <div class="card-overlay">
+                        <h3>Kyoto, Japan</h3>
+                        <p>Experience the magical Cherry Blossom Festival!</p>
+                        <a href="#" class="discover-more">Discover More</a>
+                    </div>
+                </div>
+
+                <div class="carousel-card">
+                    <img src="enter_your_image_for_rio_carnival.jpg" alt="Rio Carnival">
+                    <div class="card-overlay">
+                        <h3>Rio de Janeiro, Brazil</h3>
+                        <p>Join the world's most vibrant Carnival!</p>
+                        <a href="#" class="discover-more">Discover More</a>
+                    </div>
+                </div>
+
+                <div class="carousel-card">
+                    <img src="enter_your_image_for_norway_northern_lights.jpg" alt="Norway Northern Lights">
+                    <div class="card-overlay">
+                        <h3>Tromsø, Norway</h3>
+                        <p>Witness the spectacular Northern Lights!</p>
+                        <a href="#" class="discover-more">Discover More</a>
+                    </div>
+                </div>
+
+                <div class="carousel-card">
+                    <img src="enter_your_image_for_greece_ancient_ruins.jpg" alt="Greece Ancient Ruins">
+                    <div class="card-overlay">
+                        <h3>Athens, Greece</h3>
+                        <p>Step back in time amidst ancient wonders!</p>
+                        <a href="#" class="discover-more">Discover More</a>
+                    </div>
+                </div>
+
+                 <div class="carousel-card">
+                    <img src="enter_your_image_for_sahara_desert_adventure.jpg" alt="Sahara Desert Adventure">
+                    <div class="card-overlay">
+                        <h3>Marrakech, Morocco</h3>
+                        <p>Embark on an unforgettable desert expedition!</p>
+                        <a href="#" class="discover-more">Discover More</a>
+                    </div>
+                </div>
+
+                 <div class="carousel-card">
+                    <img src="enter_your_image_for_scottish_highlands.jpg" alt="Scottish Highlands Trek">
+                    <div class="card-overlay">
+                        <h3>Isle of Skye, Scotland</h3>
+                        <p>Hike through majestic landscapes and ancient tales!</p>
+                        <a href="#" class="discover-more">Discover More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('searchButton').addEventListener('click', function() {
+            const query = document.getElementById('searchBar').value;
+            alert(`Searching for: ${query}. (Search functionality needs to be re-integrated with new layout.)`);
+        });
+
+        document.getElementById('resetButton').addEventListener('click', function() {
+            document.getElementById('searchBar').value = '';
+            alert('Search bar reset.');
+        });
+    </script>
+</body>
+</html>

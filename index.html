@@ -6,6 +6,7 @@
     <title>Voyageur - Home</title>
     <link rel="stylesheet" href="travel_recommendation.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Pacifico&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
@@ -14,11 +15,11 @@
 
     <nav>
         <div class="nav-left">
-            <a href="home.html" class="logo">
-                <img src="http://googleusercontent.com/image_generation_content/5" alt="Voyageur Logo" class="logo-image">
+            <a href="index.html" class="logo">
+                <img src="voyageur_logo.png" alt="Voyageur Logo" class="logo-image">
                 Voyageur
             </a>
-            <a href="home.html">Home</a>
+            <a href="index.html">Home</a>
             <a href="about.html">About Us</a>
             <a href="contact.html">Contact Us</a>
         </div>
@@ -29,78 +30,83 @@
         </div>
     </nav>
 
+    <div class="social-media-widgets">
+        <a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com/your_handle" target="_blank" aria-label="X (formerly Twitter)"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/your_channel" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <section id="searchResults" class="search-results-container">
+        </section>
+
+    <section class="presentation-container">
+        <h2>Your Journey Begins Here</h2>
+        <p>Welcome to **Voyageur**, your ultimate guide to discovering the world's most captivating destinations and unforgettable experiences. Whether you're dreaming of tranquil beaches, bustling cityscapes, ancient wonders, or vibrant cultural festivals, we're here to help you plan your perfect escape.</p>
+        <p>Our expertly curated recommendations go beyond the obvious, highlighting unique events, hidden gems, and local insights to ensure every trip is a true adventure. Let us inspire your next journey and make your travel dreams a reality!</p>
+    </section>
     <section class="special-events-section">
         <h2>Special Events & Discoveries</h2>
         <p class="section-tagline">Explore unique activities and top destinations around the globe!</p>
         <div class="carousel-container">
             <div class="carousel-inner">
                 <div class="carousel-card">
-                    <img src="enter_your_image_for_japan_cherry_blossom.jpg" alt="Japan Cherry Blossom">
+                    <img src="japan_cherry.jpg" alt="Japan Cherry Blossom">
                     <div class="card-overlay">
                         <h3>Kyoto, Japan</h3>
                         <p>Experience the magical Cherry Blossom Festival!</p>
-                        <a href="#" class="discover-more">Discover More</a>
+                        <a href="kyoto-offer.html" class="discover-more">Discover More</a>
                     </div>
                 </div>
 
                 <div class="carousel-card">
-                    <img src="enter_your_image_for_rio_carnival.jpg" alt="Rio Carnival">
+                    <img src="rio_carnival.jpg" alt="Rio Carnival">
                     <div class="card-overlay">
                         <h3>Rio de Janeiro, Brazil</h3>
                         <p>Join the world's most vibrant Carnival!</p>
-                        <a href="#" class="discover-more">Discover More</a>
+                        <a href="rio-offer.html" class="discover-more">Discover More</a>
                     </div>
                 </div>
 
                 <div class="carousel-card">
-                    <img src="enter_your_image_for_norway_northern_lights.jpg" alt="Norway Northern Lights">
+                    <img src="norway_northern_lights.jpg" alt="Norway Northern Lights">
                     <div class="card-overlay">
                         <h3>Tromsø, Norway</h3>
                         <p>Witness the spectacular Northern Lights!</p>
-                        <a href="#" class="discover-more">Discover More</a>
+                        <a href="tromso-offer.html" class="discover-more">Discover More</a>
                     </div>
                 </div>
 
                 <div class="carousel-card">
-                    <img src="enter_your_image_for_greece_ancient_ruins.jpg" alt="Greece Ancient Ruins">
+                    <img src="greece_ancient.jpg" alt="Greece Ancient Ruins">
                     <div class="card-overlay">
                         <h3>Athens, Greece</h3>
                         <p>Step back in time amidst ancient wonders!</p>
-                        <a href="#" class="discover-more">Discover More</a>
+                        <a href="athens-offer.html" class="discover-more">Discover More</a>
                     </div>
                 </div>
 
                  <div class="carousel-card">
-                    <img src="enter_your_image_for_sahara_desert_adventure.jpg" alt="Sahara Desert Adventure">
+                    <img src="sahara_desert.jpg" alt="Sahara Desert Adventure">
                     <div class="card-overlay">
                         <h3>Marrakech, Morocco</h3>
                         <p>Embark on an unforgettable desert expedition!</p>
-                        <a href="#" class="discover-more">Discover More</a>
+                        <a href="marrakech-offer.html" class="discover-more">Discover More</a>
                     </div>
                 </div>
 
                  <div class="carousel-card">
-                    <img src="enter_your_image_for_scottish_highlands.jpg" alt="Scottish Highlands Trek">
+                    <img src="scottish_highlands.jpg" alt="Scottish Highlands Trek">
                     <div class="card-overlay">
                         <h3>Isle of Skye, Scotland</h3>
                         <p>Hike through majestic landscapes and ancient tales!</p>
-                        <a href="#" class="discover-more">Discover More</a>
+                        <a href="skye-offer.html" class="discover-more">Discover More</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <script>
-        document.getElementById('searchButton').addEventListener('click', function() {
-            const query = document.getElementById('searchBar').value;
-            alert(`Searching for: ${query}. (Search functionality needs to be re-integrated with new layout.)`);
-        });
-
-        document.getElementById('resetButton').addEventListener('click', function() {
-            document.getElementById('searchBar').value = '';
-            alert('Search bar reset.');
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

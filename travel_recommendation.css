@@ -1,5 +1,3 @@
-/* style.css */
-
 /* --- Base & Background --- */
 body {
     font-family: 'Montserrat', sans-serif; /* Modern, clean font */
@@ -112,24 +110,24 @@ nav a:hover {
 }
 
 .search-container input[type="text"] {
-    padding: 12px; /* More padding */
+    padding: 12px;
     border: 1px solid #a0a0a0;
-    border-radius: 25px; /* More rounded */
-    font-size: 14px; /* Larger font */
-    width: 250px; /* Wider input */
-    background-color: rgba(255, 255, 255, 0.95); /* Less transparent */
+    border-radius: 25px;
+    font-size: 14px;
+    width: 250px;
+    background-color: rgba(255, 255, 255, 0.95);
     color: #333;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .search-container button {
-    padding: 12px 22px; /* Larger buttons */
-    background-color: #007bff; /* Primary blue */
+    padding: 12px 22px;
+    background-color: #007bff;
     color: #fff;
     border: none;
-    border-radius: 25px; /* More rounded */
+    border-radius: 25px;
     cursor: pointer;
-    font-size: 14px; /* Larger font */
+    font-size: 14px;
     font-weight: bold;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -142,7 +140,7 @@ nav a:hover {
 }
 
 .search-container button.reset {
-    background-color: #ffc107; /* Warm yellow */
+    background-color: #ffc107;
     color: #333;
 }
 
@@ -150,25 +148,57 @@ nav a:hover {
     background-color: #e0a800;
 }
 
-/* --- Special Events & Discoveries Section --- */
-.special-events-section {
-    padding: 40px 0; /* More vertical padding */
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.5); /* Slightly transparent white background */
+/* --- New PRESENTATION CONTAINER --- */
+.presentation-container {
+    padding: 40px 30px;
+    max-width: 1000px;
     margin: 30px auto;
-    border-radius: 15px; /* More rounded corners */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* Deeper shadow */
-    max-width: 1200px; /* Wider section */
-    width: 90%; /* Responsive width */
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
     position: relative;
     z-index: 1;
-    overflow: hidden; /* Hide anything outside */
+    text-align: center;
+    color: #222;
+}
+
+.presentation-container h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8em;
+    color: #007bff;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.presentation-container p {
+    font-size: 1.15em;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    color: #333;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Special Events & Discoveries Section (Home Page) --- */
+.special-events-section {
+    padding: 40px 0;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 30px auto;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    max-width: 1200px;
+    width: 90%;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
 }
 
 .special-events-section h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 3em; /* Larger heading */
-    color: #007bff; /* Primary blue */
+    font-size: 3em;
+    color: #007bff;
     margin-bottom: 10px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
@@ -182,67 +212,67 @@ nav a:hover {
 
 .carousel-container {
     padding: 20px 0;
-    overflow-x: auto; /* Enable horizontal scrolling */
-    scroll-snap-type: x mandatory; /* Snap to cards */
-    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
-    scrollbar-width: none; /* Hide scrollbar for Firefox */
-    -ms-overflow-style: none;  /* Hide scrollbar for IE/Edge */
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .carousel-container::-webkit-scrollbar {
-    display: none; /* Hide scrollbar for Chrome/Safari */
+    display: none;
 }
 
 .carousel-inner {
     display: flex;
-    gap: 30px; /* Space between cards */
-    padding: 10px 40px; /* Padding on the sides to show partial next/prev cards */
-    justify-content: flex-start; /* Align items to the start */
-    align-items: stretch; /* Stretch cards to equal height if content varies */
+    gap: 30px;
+    padding: 10px 40px;
+    justify-content: flex-start;
+    align-items: stretch;
 }
 
 .carousel-card {
-    flex: 0 0 320px; /* Fixed width for each card, adjust as needed */
-    height: 450px; /* Fixed height for consistency */
-    scroll-snap-align: start; /* Snap point at the start of each card */
+    flex: 0 0 320px;
+    height: 450px;
+    scroll-snap-align: start;
     background-color: #fff;
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-    overflow: hidden; /* Hide overflowing content (e.g., rounded image corners) */
+    overflow: hidden;
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* Align content to bottom */
+    justify-content: flex-end;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .carousel-card:hover {
-    transform: translateY(-5px); /* Lift effect on hover */
+    transform: translateY(-5px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .carousel-card img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Cover the card area */
-    position: absolute; /* Position image to fill card */
+    object-fit: cover;
+    position: absolute;
     top: 0;
     left: 0;
-    z-index: 0; /* Behind overlay */
+    z-index: 0;
 }
 
 .card-overlay {
-    position: relative; /* Position relative to card, not image */
-    z-index: 1; /* Above image */
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%); /* Gradient overlay */
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
     color: #fff;
     padding: 20px;
-    padding-top: 80px; /* More padding at top to make gradient softer */
+    padding-top: 80px;
     text-align: left;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end; /* Push content to the bottom of the overlay */
-    height: 100%; /* Take full height of card for gradient */
+    justify-content: flex-end;
+    height: 100%;
 }
 
 .card-overlay h3 {
@@ -250,7 +280,7 @@ nav a:hover {
     font-size: 1.8em;
     margin-bottom: 5px;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    color: #fff; /* Ensure text is white */
+    color: #fff;
 }
 
 .card-overlay p {
@@ -270,10 +300,464 @@ nav a:hover {
     font-weight: bold;
     font-size: 0.9em;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    align-self: flex-start; /* Align button to the left within overlay */
+    align-self: flex-start;
 }
 
 .discover-more:hover {
     background-color: #0056b3;
     transform: translateY(-2px);
+}
+
+/* --- Social Media Widgets --- */
+.social-media-widgets {
+    position: fixed;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 1000;
+}
+
+.social-media-widgets a {
+    color: #fff;
+    background-color: #333;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.social-media-widgets a:hover {
+    background-color: #007bff;
+    transform: scale(1.1);
+}
+
+/* --- Search Results Section (Dynamically Added Content) --- */
+.search-results-container {
+    padding: 40px 30px;
+    max-width: 1000px;
+    margin: 30px auto;
+    background-color: rgba(255, 255, 255, 0.6); /* Slightly more opaque for results */
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    position: relative;
+    z-index: 1;
+    display: none; /* HIDE BY DEFAULT - NEW */
+    flex-direction: column;
+    align-items: center;
+    min-height: 100px;
+    text-align: center;
+}
+
+.search-results-container .no-results {
+    font-size: 1.2em;
+    color: #555;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.recommendations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 30px;
+    width: 100%; /* Take full width of parent container */
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.recommendation-card {
+    background-color: #fff; /* Solid white background for readability */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-align: left; /* Align text within card to left */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%; /* Ensure cards are same height */
+}
+
+.recommendation-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.recommendation-card img {
+    width: 100%;
+    height: 200px; /* Fixed height for images */
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+}
+
+.recommendation-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6em;
+    color: #007bff;
+    margin: 15px 15px 5px 15px;
+}
+
+.recommendation-card p {
+    font-size: 0.95em;
+    color: #444;
+    padding: 0 15px 15px 15px;
+    line-height: 1.5;
+    flex-grow: 1; /* Allow description to take available space */
+}
+
+.recommendation-card .local-time-info {
+    font-size: 0.9em;
+    color: #777;
+    font-style: italic;
+    margin-top: auto; /* Push to the bottom */
+    padding: 0 15px 15px 15px;
+}
+
+/* --- Offer Page Specific Styles --- */
+.offer-details-container {
+    text-align: left;
+}
+
+.offer-details-container h2 {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.offer-tagline {
+    font-size: 1.2em;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #666;
+}
+
+.offer-content {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 25px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.offer-content h3 {
+    font-family: 'Playfair Display', serif;
+    color: #007bff;
+    font-size: 1.8em;
+    margin-top: 0;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 123, 255, 0.3);
+    padding-bottom: 10px;
+}
+
+.offer-content ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-bottom: 15px;
+    color: #444;
+}
+
+.offer-content ul li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.offer-content p {
+    font-size: 1.05em;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.offer-price-note {
+    font-weight: bold;
+    color: #0056b3;
+    font-size: 1.1em;
+    text-align: right;
+    margin-top: 20px;
+}
+
+/* Inquiry Form Section */
+.inquiry-form-section {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.inquiry-form-section h3 {
+    font-family: 'Playfair Display', serif;
+    color: #007bff;
+    font-size: 1.8em;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.offer-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.offer-form .form-group {
+    margin-bottom: 20px;
+}
+
+.offer-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.offer-form input[type="text"],
+.offer-form input[type="email"],
+.offer-form input[type="tel"],
+.offer-form select,
+.offer-form textarea {
+    width: calc(100% - 22px);
+    padding: 11px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.offer-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.offer-form .submit-button {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 1.1em;
+    margin-top: 10px;
+}
+
+.form-note {
+    text-align: center;
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 20px;
+}
+
+/* --- New Background Classes for Offer Pages --- */
+.kyoto-bg {
+    background-image: url('kyoto.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.rio-bg {
+    background-image: url('rio.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.tromso-bg {
+    background-image: url('tromso.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.athens-bg {
+    background-image: url('athens.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.marrakech-bg {
+    background-image: url('marrakech.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.skye-bg {
+    background-image: url('scotland.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+/* --- New styles for About Us and Contact Us pages --- */
+.page-container {
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: 30px auto;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.about-section h2, .contact-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8em;
+    color: #007bff;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.about-section p, .contact-section .section-tagline {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #444;
+}
+
+/* Team Section */
+.team-section {
+    margin-top: 50px;
+}
+
+.team-members {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.team-member-card {
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    flex: 0 0 calc(33.333% - 20px);
+    max-width: 280px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .team-member-card {
+        flex: 0 0 calc(50% - 15px);
+    }
+}
+
+@media (max-width: 480px) {
+    .team-member-card {
+        flex: 0 0 90%;
+    }
+}
+
+
+.team-member-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.team-member-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    color: #0056b3;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.team-member-card p {
+    font-style: italic;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.team-member-card span {
+    font-size: 0.95em;
+    color: #555;
+}
+
+/* Contact Form */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto 30px auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #333;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.submit-button {
+    padding: 12px 25px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    align-self: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.contact-info {
+    font-size: 1em;
+    color: #555;
+    margin-top: 20px;
+}
+
+.contact-info a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
 }

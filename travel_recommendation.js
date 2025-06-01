@@ -13,8 +13,8 @@ const searchResultsContainer = document.getElementById('searchResults');
 
 async function fetchTravelData() {
     try {
-        // Updated to reflect the new JSON filename
-        const response = await fetch('travel_recommendation_api.json');
+        // Ensure this matches your JSON filename exactly
+        const response = await fetch('travel_recommendation_api.json'); 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -42,105 +42,146 @@ async function searchDestinations() {
 
     let allDestinations = [];
 
-    // Flatten countries' cities
+    // Flatten countries' cities and add 'type'
     data.countries.forEach(country => {
         country.cities.forEach(city => {
             allDestinations.push({
+                type: 'city', // Add type for category filtering
+                countryName: country.name, // Add country name for specific search filtering
                 ...city,
-                countryName: country.name // Add country name for filtering
             });
         });
     });
 
-    // Add temples
-    data.temples.forEach(temple => allDestinations.push(temple));
+    // Add temples and 'type'
+    data.temples.forEach(temple => {
+        allDestinations.push({ type: 'temple', ...temple });
+    });
 
-    // Add beaches
-    data.beaches.forEach(beach => allDestinations.push(beach));
+    // Add beaches and 'type'
+    data.beaches.forEach(beach => {
+        allDestinations.push({ type: 'beach', ...beach });
+    });
 
-    console.log("All destinations flattened:", allDestinations); // DEBUG: See what's in allDestinations
+    console.log("All flattened destinations:", allDestinations); // DEBUG: See what's in allDestinations
 
-    let uniqueRecommendations = new Map();
+    let foundRecommendations = [];
 
-    allDestinations.forEach(destination => {
-        const destName = destination.name.toLowerCase();
-        const destDescription = destination.description.toLowerCase();
-        // Ensure destCountry is a string before calling .toLowerCase() and .includes()
-        const destCountry = (destination.countryName || '').toLowerCase(); 
+    // --- NEW LOGIC FOR CATEGORY SEARCH ---
+    if (query === 'country' || query === 'countries') {
+        // If searching for 'country', show all cities from all countries
+        foundRecommendations = allDestinations.filter(item => item.type === 'city');
+    } else if (query === 'temple' || query === 'temples') {
+        // If searching for 'temple', show all temples
+        foundRecommendations = allDestinations.filter(item => item.type === 'temple');
+    } else if (query === 'beach' || query === 'beaches') {
+        // If searching for 'beach', show all beaches
+        foundRecommendations = allDestinations.filter(item => item.type === 'beach');
+    } else {
+        // --- EXISTING LOGIC FOR SPECIFIC SEARCH (name, description, country name) ---
+        foundRecommendations = allDestinations.filter(item => {
+            const itemName = item.name.toLowerCase();
+            const itemDescription = (item.description || '').toLowerCase();
+            const itemCountryName = (item.countryName || '').toLowerCase(); // Ensure it's a string
 
-        console.log(`Checking destination: ${destName}, Description: ${destDescription}, Country: ${destCountry}`); // DEBUG: Log each item checked
+            console.log(`Checking destination: ${itemName}, Description: ${itemDescription}, Country: ${itemCountryName}`); // DEBUG: Log each item checked
 
-        if (destName.includes(query) || destDescription.includes(query) || destCountry.includes(query)) {
-            // Use destination name as key for uniqueness
-            uniqueRecommendations.set(destination.name, destination);
-            console.log(`Match found for "${query}":`, destination.name); // DEBUG: Log matches
+            return itemName.includes(query) ||
+                   itemDescription.includes(query) ||
+                   itemCountryName.includes(query);
+        });
+    }
+
+    console.log("Filtered recommendations (after category/specific logic):", foundRecommendations);
+
+    // Filter for unique recommendations (to avoid duplicates if an item matches multiple criteria)
+    const uniqueRecommendations = [];
+    const seen = new Set(); // Use a Set to track unique identifiers
+
+    foundRecommendations.forEach(rec => {
+        // Create a unique identifier for each recommendation (e.g., type-name-description)
+        // This handles cases where a city's name might appear in another city's description etc.
+        const identifier = `${rec.type}-${rec.name}-${rec.description}`;
+        if (!seen.has(identifier)) {
+            uniqueRecommendations.push(rec);
+            seen.add(identifier);
         }
     });
 
-    console.log("Unique recommendations found (Map):", uniqueRecommendations); // DEBUG: Final map content
-    console.log("Number of unique recommendations:", uniqueRecommendations.size); // DEBUG: Size of the map
+    console.log("Unique recommendations for display:", uniqueRecommendations); // DEBUG: Final unique list
+    console.log("Number of unique recommendations:", uniqueRecommendations.length); // DEBUG: Count of unique items
 
-    if (uniqueRecommendations.size === 0) {
-        searchResultsContainer.innerHTML = `<p>No recommendations found for "${query}".</p>`;
-        searchResultsContainer.style.display = 'block';
-        return;
+    if (uniqueRecommendations.length > 0) {
+        // Create a container for the grid of recommendations
+        const resultsGrid = document.createElement('div');
+        resultsGrid.classList.add('recommendations-grid'); // You might need to add CSS for this class
+
+        // Display up to 2 unique recommendations
+        uniqueRecommendations.slice(0, 2).forEach(rec => {
+            const recommendationCard = document.createElement('div');
+            recommendationCard.classList.add('recommendation-card');
+
+            const img = document.createElement('img');
+            img.src = rec.imageUrl;
+            img.alt = rec.name;
+            img.onerror = function() {
+                this.onerror = null; // Prevent infinite loop if fallback also fails
+                this.src = 'placeholder.jpg'; // Path to a default placeholder image
+            };
+            recommendationCard.appendChild(img);
+
+            const content = document.createElement('div');
+            content.classList.add('card-content');
+
+            const title = document.createElement('h3');
+            title.textContent = rec.name;
+            content.appendChild(title);
+
+            const description = document.createElement('p');
+            description.textContent = rec.description;
+            content.appendChild(description);
+
+            // Local time display
+            const localTimeInfo = document.createElement('p');
+            localTimeInfo.classList.add('local-time-info');
+            content.appendChild(localTimeInfo);
+
+            // Determine time zone: prefer local_time from JSON, then use getTimeZoneForCity lookup
+            let timeZoneToUse = rec.local_time || getTimeZoneForCity(rec.name);
+
+            if (timeZoneToUse) {
+                // Initial call to display time
+                updateLocalTime(timeZoneToUse, localTimeInfo);
+                // Update every second
+                setInterval(() => {
+                    updateLocalTime(timeZoneToUse, localTimeInfo);
+                }, 1000);
+            } else {
+                localTimeInfo.textContent = 'Local Time: N/A';
+            }
+
+            recommendationCard.appendChild(content);
+            resultsGrid.appendChild(recommendationCard); // Append card to the grid
+        });
+        searchResultsContainer.appendChild(resultsGrid); // Append the grid to the search results container
+        searchResultsContainer.style.display = 'flex'; // Show container with results
+    } else {
+        // Display "No recommendations found" message
+        searchResultsContainer.innerHTML = `<p class="no-results">No recommendations found for "${query}". Try searching for 'country', 'beach', 'temple', or specific names like 'Australia', 'Bora Bora', 'Angkor Wat'.</p>`;
+        searchResultsContainer.style.display = 'block'; // Show container for the message
     }
-
-    // Display only top 2 unique recommendations
-    let count = 0;
-    for (let [key, destination] of uniqueRecommendations) {
-        if (count >= 2) break;
-
-        const recommendationCard = document.createElement('div');
-        recommendationCard.classList.add('recommendation-card');
-
-        const img = document.createElement('img');
-        img.src = destination.imageUrl;
-        img.alt = destination.name;
-        img.onerror = function() {
-            this.onerror = null; // Prevent infinite loop if fallback also fails
-            this.src = 'placeholder.jpg'; // Path to a default placeholder image
-        };
-        recommendationCard.appendChild(img);
-
-        const content = document.createElement('div');
-        content.classList.add('card-content');
-
-        const title = document.createElement('h3');
-        title.textContent = destination.name;
-        content.appendChild(title);
-
-        const description = document.createElement('p');
-        description.textContent = destination.description;
-        content.appendChild(description);
-
-        // Local time display
-        const localTimeSpan = document.createElement('span');
-        localTimeSpan.classList.add('local-time');
-        content.appendChild(localTimeSpan);
-
-        // Initial call
-        updateLocalTime(destination.local_time || getTimeZoneForCity(destination.name), localTimeSpan);
-        // Update every second (clear interval on card removal if dynamic)
-        setInterval(() => {
-            updateLocalTime(destination.local_time || getTimeZoneForCity(destination.name), localTimeSpan);
-        }, 1000);
-
-        recommendationCard.appendChild(content);
-        searchResultsContainer.appendChild(recommendationCard);
-        count++;
-    }
-
-    searchResultsContainer.style.display = 'flex'; // Show container with results
+    // Scroll to results for better UX, especially on smaller screens
+    searchResultsContainer.scrollIntoView({ behavior: 'smooth' });
 }
 
 function resetSearch() {
     document.getElementById('searchBar').value = ''; // Clear search bar
     searchResultsContainer.innerHTML = ''; // Clear results container
     searchResultsContainer.style.display = 'none'; // Hide results container
-    alert('Search results cleared.');
+    alert('Search results cleared.'); // Provide user feedback
 }
 
+// Helper function to map city names to time zones
 function getTimeZoneForCity(cityName) {
     const timeZones = {
         "Sydney, Australia": "Australia/Sydney",
@@ -161,11 +202,13 @@ function getTimeZoneForCity(cityName) {
         "Taj Mahal, India": "Asia/Kolkata",
         "Bora Bora, French Polynesia": "Pacific/Tahiti",
         "Copacabana Beach, Brazil": "America/Sao_Paulo",
-        "Petra, Jordan": "Asia/Amman" // Added Petra as it was in JSON
+        "Petra, Jordan": "Asia/Amman" // Ensure this is also in your JSON if applicable
     };
+    // Return the timezone if found, otherwise undefined
     return timeZones[cityName];
 }
 
+// Function to update the local time display for a given element
 function updateLocalTime(timeZone, element) {
     if (!timeZone) {
         element.textContent = 'Local Time: N/A';
@@ -177,8 +220,8 @@ function updateLocalTime(timeZone, element) {
             hour: '2-digit',
             minute: '2-digit',
             second: '2-digit',
-            hour12: false,
-            timeZone: timeZone
+            hour12: false, // Use 24-hour format
+            timeZone: timeZone // Apply the specific time zone
         };
         element.textContent = `Local Time: ${now.toLocaleTimeString('en-US', options)}`;
     } catch (error) {
@@ -200,7 +243,8 @@ function startAutoScroll() {
     // Clear previous interval to prevent multiple intervals running
     stopAutoScroll();
 
-    if (carouselCards.length === 0 || !carouselContainer || !carouselInner) {
+    // Check if necessary carousel elements exist
+    if (!carouselContainer || !carouselInner || carouselCards.length === 0) {
         console.warn("Carousel elements not found or no cards. Auto-scroll disabled.");
         return;
     }
@@ -213,7 +257,7 @@ function startAutoScroll() {
     }
 
     const cardWidth = firstCard.offsetWidth;
-    const gap = 30; // Defined in CSS for .carousel-inner gap
+    const gap = 30; // Matches CSS gap for .carousel-inner
     const scrollStep = cardWidth + gap;
 
     scrollInterval = setInterval(() => {
@@ -242,11 +286,10 @@ function stopAutoScroll() {
 }
 
 // Add event listeners for pausing/resuming scroll on hover
-if (carouselContainer) {
+if (carouselContainer) { // Ensure container exists before adding listeners
     carouselContainer.addEventListener('mouseenter', stopAutoScroll);
     carouselContainer.addEventListener('mouseleave', startAutoScroll);
 }
-
 
 // Initial call to start the auto-scroll when the script loads
 startAutoScroll();

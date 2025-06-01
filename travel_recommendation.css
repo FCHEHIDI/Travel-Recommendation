@@ -307,9 +307,6 @@ nav a:hover {
     background-color: #0056b3;
     transform: translateY(-2px);
 }
-/* style.css */
-
-/* ... (previous CSS code remains unchanged) ... */
 
 /* --- New Offer Page Specific Styles --- */
 .offer-details-container {
@@ -332,7 +329,7 @@ nav a:hover {
 }
 
 .offer-content {
-    background-color: rgba(255, 255, 255, 0.7); /* Slightly more opaque background for content block */
+    background-color: rgba(255, 255, 255, 0.5); /* Slightly more opaque background for content block */
     padding: 25px;
     border-radius: 10px;
     margin-bottom: 30px;
@@ -419,7 +416,7 @@ nav a:hover {
     border: 1px solid #ddd;
     border-radius: 8px;
     font-size: 1em;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.5);
     color: #333;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
 }
@@ -793,7 +790,18 @@ nav a:hover {
     background-color: #218838;
 }
 
-/* Added CSS to hide search results container by default */
+/* Updated CSS for search results container - less transparent */
 #searchResults {
     display: none;
+    background-color: rgba(255, 255, 255, 0.5); /* Changed from 0.5 to 0.8 for less transparency */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    max-width: 1200px;
+    margin: 30px auto;
+    position: relative;
+    z-index: 1;
+    flex-direction: column; /* Ensure content stacks vertically */
+    gap: 20px; /* Space between result cards */
+    color: #333; /* Darker text for better contrast */
 }

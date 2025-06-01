@@ -792,3 +792,8 @@ nav a:hover {
 .contact-form button:hover {
     background-color: #218838;
 }
+
+/* Added CSS to hide search results container by default */
+#searchResults {
+    display: none;
+}

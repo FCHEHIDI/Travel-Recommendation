@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voyageur - Contact Us</title>
+    <link rel="stylesheet" href="travel_recommendation.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Pacifico&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Discover Your Next Journey</h1>
+    </header>
+
+    <nav>
+        <div class="nav-left">
+            <a href="index.html" class="logo">
+                <img src="voyageur_logo.png" alt="Voyageur Logo" class="logo-image">
+                Voyageur
+            </a>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+        <div class="search-container">
+            <input type="text" id="searchBar" placeholder="Search destinations...">
+            <button id="searchButton">Search</button>
+            <button id="resetButton" class="reset">Reset</button>
+        </div>
+    </nav>
+
+    <div class="social-media-widgets">
+        <a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com/your_handle" target="_blank" aria-label="X (formerly Twitter)"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.youtube.com/your_channel" target="_blank" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+    </div>
+
+    <section id="searchResults" class="search-results-container">
+    </section>
+
+    <div class="page-container contact-section">
+        <h2>Get in Touch with Voyageur</h2>
+        <p class="section-tagline">Have questions about your next adventure? We're here to help!</p>
+
+        <form class="contact-form">
+            <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="subject">Subject:</label>
+                <input type="text" id="subject" name="subject" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Your Message:</label>
+                <textarea id="message" name="message" rows="6" required></textarea>
+            </div>
+            <button type="submit" class="submit-button">Send Message</button>
+        </form>
+
+        <div class="contact-info">
+            <p>Alternatively, you can reach us via:</p>
+            <p>Email: <a href="mailto:info@voyageur.com">info@voyageur.com</a></p>
+            <p>Phone: +1 (555) 123-4567</p>
+            <p>Address: 123 Travel Lane, Adventure City, World 78901</p>
+        </div>
+    </div>
+
+    <script src="travel_recommendation.js"></script>
+</body>
+</html>

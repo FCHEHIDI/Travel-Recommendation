@@ -32,7 +32,7 @@ async function searchDestinations() {
     const data = await fetchTravelData();
     searchResultsContainer.innerHTML = ''; // Clear previous results
 
-    console.log("Search query:", query); // For debugging
+    console.log("Search query:", query); // DEBUG: Log the query
 
     if (!data) {
         searchResultsContainer.innerHTML = '<p>Could not load travel recommendations.</p>';
@@ -42,204 +42,151 @@ async function searchDestinations() {
 
     let allDestinations = [];
 
-    // Flatten all recommendable items (cities, temples, beaches) into a single array
+    // Flatten countries' cities
     data.countries.forEach(country => {
         country.cities.forEach(city => {
             allDestinations.push({
-                type: 'city',
-                countryName: country.name, // Keep country name for search matching
-                ...city, // Spread city properties
-                // NOTE: local_time is missing in your JSON for cities, this will be undefined unless added
+                ...city,
+                countryName: country.name // Add country name for filtering
             });
         });
     });
 
-    data.temples.forEach(temple => {
-        allDestinations.push({ type: 'temple', ...temple });
-    });
+    // Add temples
+    data.temples.forEach(temple => allDestinations.push(temple));
 
-    data.beaches.forEach(beach => {
-        allDestinations.push({ type: 'beach', ...beach });
-    });
+    // Add beaches
+    data.beaches.forEach(beach => allDestinations.push(beach));
 
-    console.log("All flattened destinations:", allDestinations); // For debugging
+    console.log("All destinations flattened:", allDestinations); // DEBUG: See what's in allDestinations
 
-    // Filter based on query
-    let foundRecommendations = allDestinations.filter(item => {
-        const itemName = item.name.toLowerCase();
-        const itemDescription = (item.description || '').toLowerCase(); // Ensure description exists
-        const itemCountryName = (item.countryName || '').toLowerCase(); // Ensure countryName exists for cities
+    let uniqueRecommendations = new Map();
 
-        // Check if query matches item name, description, or associated country name (for cities)
-        return itemName.includes(query) ||
-               itemDescription.includes(query) ||
-               itemCountryName.includes(query);
-    });
+    allDestinations.forEach(destination => {
+        const destName = destination.name.toLowerCase();
+        const destDescription = destination.description.toLowerCase();
+        // Ensure destCountry is a string before calling .toLowerCase() and .includes()
+        const destCountry = (destination.countryName || '').toLowerCase(); 
 
-    console.log("Filtered recommendations:", foundRecommendations); // For debugging
+        console.log(`Checking destination: ${destName}, Description: ${destDescription}, Country: ${destCountry}`); // DEBUG: Log each item checked
 
-    // Filter for unique recommendations (in case a city search also matched its country)
-    const uniqueRecommendations = [];
-    const seen = new Set();
-
-    foundRecommendations.forEach(rec => {
-        // Use a more robust identifier to distinguish different types of recommendations
-        const identifier = `${rec.type}-${rec.name}-${rec.description}`;
-        if (!seen.has(identifier)) {
-            uniqueRecommendations.push(rec);
-            seen.add(identifier);
+        if (destName.includes(query) || destDescription.includes(query) || destCountry.includes(query)) {
+            // Use destination name as key for uniqueness
+            uniqueRecommendations.set(destination.name, destination);
+            console.log(`Match found for "${query}":`, destination.name); // DEBUG: Log matches
         }
     });
 
-    console.log("Unique recommendations for display:", uniqueRecommendations); // For debugging
+    console.log("Unique recommendations found (Map):", uniqueRecommendations); // DEBUG: Final map content
+    console.log("Number of unique recommendations:", uniqueRecommendations.size); // DEBUG: Size of the map
 
-    if (uniqueRecommendations.length > 0) {
-        const resultsHtml = document.createElement('div');
-        resultsHtml.classList.add('recommendations-grid'); // For CSS grid layout
-
-        // Display up to 2 recommendations (as requested)
-        uniqueRecommendations.slice(0, 2).forEach(rec => {
-            const card = document.createElement('div');
-            card.classList.add('recommendation-card');
-
-            const img = document.createElement('img');
-            img.src = rec.imageUrl; // Use imageUrl from your JSON
-            img.alt = rec.name;
-            img.onerror = function() { this.onerror=null; this.src='placeholder.jpg'; }; // Fallback image
-
-            const title = document.createElement('h3');
-            title.textContent = rec.name;
-
-            const description = document.createElement('p');
-            description.textContent = rec.description;
-
-            const localTimeInfo = document.createElement('p');
-            localTimeInfo.classList.add('local-time-info');
-
-            // --- IMPORTANT NOTE ABOUT TIME ZONE ---
-            // Your travel_recommendation_api (1).json currently does NOT have 'local_time'
-            // defined for cities, temples, or beaches. For accurate time display,
-            // you MUST add a "local_time": "TimeZone/Identifier" property
-            // (e.g., "Asia/Tokyo", "America/Sao_Paulo") to each recommendable item
-            // in your JSON file. Without it, it will display "N/A".
-            // The `getTimeZoneForCity` is a simple placeholder that requires manual mapping.
-            let timeZoneToUse = rec.local_time || getTimeZoneForCity(rec.name);
-
-            if (timeZoneToUse) {
-                updateLocalTime(timeZoneToUse, localTimeInfo);
-                // Update time every second if a valid timezone is found
-                setInterval(() => updateLocalTime(timeZoneToUse, localTimeInfo), 1000);
-            } else {
-                localTimeInfo.textContent = `Local Time: N/A`;
-            }
-
-            card.appendChild(img);
-            card.appendChild(title);
-            card.appendChild(description);
-            card.appendChild(localTimeInfo);
-
-            resultsHtml.appendChild(card);
-        });
-        searchResultsContainer.appendChild(resultsHtml);
-        searchResultsContainer.style.display = 'flex'; // Show container with results
-    } else {
-        searchResultsContainer.innerHTML = `<p class="no-results">No recommendations found for "${query}". Try searching for 'country', 'beach', 'temple', or specific names like 'Australia', 'Bora Bora', 'Angkor Wat'.</p>`;
-        searchResultsContainer.style.display = 'block'; // Show container for "no results" message
+    if (uniqueRecommendations.size === 0) {
+        searchResultsContainer.innerHTML = `<p>No recommendations found for "${query}".</p>`;
+        searchResultsContainer.style.display = 'block';
+        return;
     }
-    // Scroll to search results
-    searchResultsContainer.scrollIntoView({ behavior: 'smooth' });
-}
 
+    // Display only top 2 unique recommendations
+    let count = 0;
+    for (let [key, destination] of uniqueRecommendations) {
+        if (count >= 2) break;
 
-// --- IMPORTANT: This is a placeholder function for Time Zones ---
-// For accurate local time display, you MUST add a 'local_time' property
-// (e.g., "Asia/Tokyo", "America/New_York") to each city, temple, and beach object
-// in your travel_recommendation_api (1).json.
-// Example for a city:
-// {
-//   "name": "Sydney, Australia",
-//   "imageUrl": "...",
-//   "description": "...",
-//   "local_time": "Australia/Sydney" // <-- ADD THIS
-// }
-// This function below is a simple helper and will not cover all cases.
-function getTimeZoneForCity(cityName) {
-    const timezoneMap = {
-        "sydney, australia": "Australia/Sydney",
-        "melbourne, australia": "Australia/Melbourne",
-        "tokyo, japan": "Asia/Tokyo",
-        "kyoto, japan": "Asia/Tokyo",
-        "rio de janeiro, brazil": "America/Sao_Paulo",
-        "são paulo, brazil": "America/Sao_Paulo",
-        "edinburgh, scotland": "Europe/London",
-        "isle of skye, scotland": "Europe/London",
-        "bangkok, thailand": "Asia/Bangkok",
-        "chiang mai, thailand": "Asia/Bangkok",
-        "beijing, china": "Asia/Shanghai",
-        "shanghai, china": "Asia/Shanghai",
-        "colombo, sri lanka": "Asia/Colombo",
-        "kandy, sri lanka": "Asia/Colombo",
-        "malé, maldives": "Indian/Maldives",
-        "addu atoll, maldives": "Indian/Maldives",
-        "marrakech, morocco": "Africa/Casablanca",
-        "fes, morocco": "Africa/Casablanca",
-        "dubai, uae": "Asia/Dubai",
-        "abu dhabi, uae": "Asia/Dubai",
-        "cape town, south africa": "Africa/Johannesburg",
-        "johannesburg, south africa": "Africa/Johannesburg",
-        "moscow, russia": "Europe/Moscow",
-        "st. petersburg, russia": "Europe/Moscow",
-        "rovaniemi, finland": "Europe/Helsinki",
-        "levi, finland": "Europe/Helsinki",
-        "vancouver, canada": "America/Vancouver",
-        "toronto, canada": "America/Toronto",
-        "lima, peru": "America/Lima",
-        "cusco, peru": "America/Lima",
-        "santiago, chile": "America/Santiago",
-        "valparaíso, chile": "America/Santiago",
-        "athens, greece": "Europe/Athens",
-        "santorini, greece": "Europe/Athens",
-        "prague, czech republic": "Europe/Prague",
-        "český krumlov, czech republic": "Europe/Prague",
-        "budapest, hungary": "Europe/Budapest",
-        "eger, hungary": "Europe/Budapest",
-        "amman, jordan": "Asia/Amman",
-        "petra, jordan": "Asia/Amman",
-        "angkor wat, cambodia": "Asia/Phnom_Penh",
-        "taj mahal, india": "Asia/Kolkata",
-        "bora bora, french polynesia": "Pacific/Tahiti",
-        "copacabana beach, brazil": "America/Sao_Paulo"
-    };
-    return timezoneMap[cityName.toLowerCase()];
-}
+        const recommendationCard = document.createElement('div');
+        recommendationCard.classList.add('recommendation-card');
 
-
-function updateLocalTime(timeZone, element) {
-    try {
-        const now = new Date();
-        const options = {
-            timeZone: timeZone,
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric'
+        const img = document.createElement('img');
+        img.src = destination.imageUrl;
+        img.alt = destination.name;
+        img.onerror = function() {
+            this.onerror = null; // Prevent infinite loop if fallback also fails
+            this.src = 'placeholder.jpg'; // Path to a default placeholder image
         };
-        const localDateTime = new Intl.DateTimeFormat('en-US', options).format(now);
-        element.textContent = `Local Time: ${localDateTime}`;
-    } catch (error) {
-        element.textContent = `Local Time: N/A (Invalid TimeZone)`;
-        console.error(`Error updating local time for ${timeZone}:`, error);
+        recommendationCard.appendChild(img);
+
+        const content = document.createElement('div');
+        content.classList.add('card-content');
+
+        const title = document.createElement('h3');
+        title.textContent = destination.name;
+        content.appendChild(title);
+
+        const description = document.createElement('p');
+        description.textContent = destination.description;
+        content.appendChild(description);
+
+        // Local time display
+        const localTimeSpan = document.createElement('span');
+        localTimeSpan.classList.add('local-time');
+        content.appendChild(localTimeSpan);
+
+        // Initial call
+        updateLocalTime(destination.local_time || getTimeZoneForCity(destination.name), localTimeSpan);
+        // Update every second (clear interval on card removal if dynamic)
+        setInterval(() => {
+            updateLocalTime(destination.local_time || getTimeZoneForCity(destination.name), localTimeSpan);
+        }, 1000);
+
+        recommendationCard.appendChild(content);
+        searchResultsContainer.appendChild(recommendationCard);
+        count++;
     }
+
+    searchResultsContainer.style.display = 'flex'; // Show container with results
 }
 
 function resetSearch() {
-    document.getElementById('searchBar').value = '';
-    searchResultsContainer.innerHTML = ''; // Clear the results
-    searchResultsContainer.style.display = 'none'; // Hide container on reset
+    document.getElementById('searchBar').value = ''; // Clear search bar
+    searchResultsContainer.innerHTML = ''; // Clear results container
+    searchResultsContainer.style.display = 'none'; // Hide results container
     alert('Search results cleared.');
 }
+
+function getTimeZoneForCity(cityName) {
+    const timeZones = {
+        "Sydney, Australia": "Australia/Sydney",
+        "Melbourne, Australia": "Australia/Melbourne",
+        "Tokyo, Japan": "Asia/Tokyo",
+        "Kyoto, Japan": "Asia/Tokyo",
+        "Rio de Janeiro, Brazil": "America/Sao_Paulo",
+        "São Paulo, Brazil": "America/Sao_Paulo",
+        "Paris, France": "Europe/Paris",
+        "London, UK": "Europe/London",
+        "Rome, Italy": "Europe/Rome",
+        "Cairo, Egypt": "Africa/Cairo",
+        "New York, USA": "America/New_York",
+        "Los Angeles, USA": "America/Los_Angeles",
+        "Vancouver, Canada": "America/Vancouver",
+        "Toronto, Canada": "America/Toronto",
+        "Angkor Wat, Cambodia": "Asia/Phnom_Penh",
+        "Taj Mahal, India": "Asia/Kolkata",
+        "Bora Bora, French Polynesia": "Pacific/Tahiti",
+        "Copacabana Beach, Brazil": "America/Sao_Paulo",
+        "Petra, Jordan": "Asia/Amman" // Added Petra as it was in JSON
+    };
+    return timeZones[cityName];
+}
+
+function updateLocalTime(timeZone, element) {
+    if (!timeZone) {
+        element.textContent = 'Local Time: N/A';
+        return;
+    }
+    try {
+        const now = new Date();
+        const options = {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false,
+            timeZone: timeZone
+        };
+        element.textContent = `Local Time: ${now.toLocaleTimeString('en-US', options)}`;
+    } catch (error) {
+        console.error('Error updating local time:', error);
+        element.textContent = 'Local Time: N/A (Invalid TimeZone)';
+    }
+}
+
 
 // --- Carousel Auto-Scroll JavaScript ---
 const carouselContainer = document.querySelector('.carousel-container');
@@ -250,26 +197,38 @@ let scrollInterval;
 const scrollSpeed = 3000; // Time in milliseconds between scrolls (3 seconds)
 
 function startAutoScroll() {
-    if (carouselCards.length === 0) return; // Prevent error if no cards
+    // Clear previous interval to prevent multiple intervals running
+    stopAutoScroll();
+
+    if (carouselCards.length === 0 || !carouselContainer || !carouselInner) {
+        console.warn("Carousel elements not found or no cards. Auto-scroll disabled.");
+        return;
+    }
 
     const firstCard = carouselCards[0];
-    const cardWidth = firstCard.offsetWidth;
-    const gap = 30;
-    const scrollStep = cardWidth + gap;
+    // Ensure firstCard exists before accessing its properties
+    if (!firstCard) {
+        console.warn("No carousel cards found for auto-scroll.");
+        return;
+    }
 
-    stopAutoScroll();
+    const cardWidth = firstCard.offsetWidth;
+    const gap = 30; // Defined in CSS for .carousel-inner gap
+    const scrollStep = cardWidth + gap;
 
     scrollInterval = setInterval(() => {
         const currentScrollLeft = carouselContainer.scrollLeft;
         const maxScrollLeft = carouselContainer.scrollWidth - carouselContainer.clientWidth;
-        const epsilon = 1;
+        const epsilon = 1; // Small buffer for floating point comparisons
 
         if (currentScrollLeft >= maxScrollLeft - epsilon) {
+            // Reset to beginning instantly when near the end
             carouselContainer.scrollTo({
                 left: 0,
                 behavior: 'instant'
             });
         } else {
+            // Scroll by one card + gap
             carouselContainer.scrollBy({
                 left: scrollStep,
                 behavior: 'smooth'
@@ -282,7 +241,15 @@ function stopAutoScroll() {
     clearInterval(scrollInterval);
 }
 
-carouselContainer.addEventListener('mouseenter', stopAutoScroll);
-carouselContainer.addEventListener('mouseleave', startAutoScroll);
+// Add event listeners for pausing/resuming scroll on hover
+if (carouselContainer) {
+    carouselContainer.addEventListener('mouseenter', stopAutoScroll);
+    carouselContainer.addEventListener('mouseleave', startAutoScroll);
+}
+
+
+// Initial call to start the auto-scroll when the script loads
 startAutoScroll();
+
+// Re-evaluate scroll on window resize (e.g., for responsiveness)
 window.addEventListener('resize', startAutoScroll);
